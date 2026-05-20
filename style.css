@@ -1,0 +1,1048 @@
+/* ================================================================
+   DIÁNA ÉS ÁBEL – RUHÁZATI WEBOLDAL
+   Két téma: székelyruha (bordó/arany) és vadászruha (erdőzöld/barna)
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   CSS VÁLTOZÓK – TÉMÁK
+   ---------------------------------------------------------------- */
+
+/* Székelyruha téma (alapértelmezett) */
+:root,
+body.theme-szekely {
+  --color-primary:       #8B1A1A;   /* mélybordó */
+  --color-primary-dark:  #5C1010;
+  --color-primary-light: #B85C5C;
+  --color-accent:        #C9913A;   /* arany */
+  --color-accent-light:  #E8BF7A;
+  --color-bg:            #FAF6EF;   /* törtfehér */
+  --color-bg-alt:        #F2EBE0;
+  --color-bg-dark:       #3A1A0E;
+  --color-surface:       #FFFFFF;
+  --color-text:          #2C1810;
+  --color-text-muted:    #6B4C3B;
+  --color-border:        #D4B896;
+  --color-hero-overlay:  rgba(58, 12, 12, 0.62);
+  --color-footer-bg:     #2C1810;
+  --color-footer-text:   #F2EBE0;
+
+  --ornament-pattern: radial-gradient(circle at 20% 50%, rgba(201,145,58,0.12) 0%, transparent 60%),
+                      radial-gradient(circle at 80% 20%, rgba(139,26,26,0.10) 0%, transparent 50%);
+  --hero-bg-img: linear-gradient(135deg, #5C1010 0%, #8B1A1A 40%, #C9913A 100%);
+
+  --font-heading: 'Georgia', 'Times New Roman', serif;
+  --font-body:    system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --shadow-sm:   0 2px 8px rgba(44, 24, 16, 0.10);
+  --shadow-md:   0 6px 24px rgba(44, 24, 16, 0.16);
+  --shadow-lg:   0 16px 48px rgba(44, 24, 16, 0.22);
+
+  --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Vadászruha téma */
+body.theme-vadasz {
+  --color-primary:       #2D5016;   /* erdőzöld */
+  --color-primary-dark:  #1A3009;
+  --color-primary-light: #5A8A3A;
+  --color-accent:        #7A5C2E;   /* barna */
+  --color-accent-light:  #B8956A;
+  --color-bg:            #F4F1EB;   /* bézs */
+  --color-bg-alt:        #E8E4D8;
+  --color-bg-dark:       #1A2E0D;
+  --color-surface:       #FFFFFF;
+  --color-text:          #1C2A10;
+  --color-text-muted:    #4A5C38;
+  --color-border:        #B8C4A0;
+  --color-hero-overlay:  rgba(10, 28, 5, 0.65);
+  --color-footer-bg:     #1A2E0D;
+  --color-footer-text:   #E8E4D8;
+
+  --ornament-pattern: radial-gradient(ellipse at 10% 80%, rgba(45,80,22,0.13) 0%, transparent 55%),
+                      radial-gradient(ellipse at 90% 10%, rgba(122,92,46,0.10) 0%, transparent 50%);
+  --hero-bg-img: linear-gradient(135deg, #1A3009 0%, #2D5016 45%, #7A5C2E 100%);
+
+  --shadow-sm:   0 2px 8px rgba(28, 42, 16, 0.10);
+  --shadow-md:   0 6px 24px rgba(28, 42, 16, 0.16);
+  --shadow-lg:   0 16px 48px rgba(28, 42, 16, 0.22);
+}
+
+/* ----------------------------------------------------------------
+   RESET & ALAP
+   ---------------------------------------------------------------- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--color-accent); }
+
+ul { list-style: none; }
+
+address { font-style: normal; }
+
+/* ----------------------------------------------------------------
+   TÉMAVEZÉRELT MEGJELENÍTÉS
+   ---------------------------------------------------------------- */
+
+body.theme-szekely .theme-vadasz-only,
+body.theme-szekely #vadasz-products,
+body.theme-szekely #vadasz-gallery {
+  display: none !important;
+}
+
+body.theme-vadasz .theme-szekely-only,
+body.theme-vadasz #szekely-products,
+body.theme-vadasz #szekely-gallery {
+  display: none !important;
+}
+
+/* ----------------------------------------------------------------
+   TÉMAVÁLTÁS ANIMÁCIÓ
+   ---------------------------------------------------------------- */
+
+.theme-transition * {
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease !important;
+}
+
+/* ----------------------------------------------------------------
+   LAYOUT – KONTÉNER
+   ---------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ----------------------------------------------------------------
+   FEJLÉC
+   ---------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg-dark);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  transition: background var(--transition);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+body.theme-szekely .logo-icon::after { content: '🪡'; }
+body.theme-vadasz  .logo-icon::after { content: '🌲'; }
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-main {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.02em;
+}
+
+.logo-sub {
+  font-size: 0.7rem;
+  color: var(--color-accent-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Navigáció */
+.main-nav {
+  flex: 1;
+}
+
+.nav-list {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background: rgba(255,255,255,0.12);
+  color: #FFFFFF;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Témaváltó */
+.theme-switcher {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.theme-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 1rem;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.theme-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-light);
+  background: rgba(255,255,255,0.08);
+}
+
+.theme-btn.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg-dark);
+}
+
+.theme-btn:focus-visible {
+  outline: 2px solid var(--color-accent-light);
+  outline-offset: 2px;
+}
+
+/* Hamburger gomb */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ----------------------------------------------------------------
+   HERO SZEKCIÓ
+   ---------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--hero-bg-img);
+  transition: background var(--transition);
+}
+
+/* Díszítőelemek – CSS-only, népi stílusú */
+.hero-ornament {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.18;
+}
+
+body.theme-szekely .hero-ornament {
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  border: 3px solid var(--color-accent);
+}
+
+body.theme-vadasz .hero-ornament {
+  background: radial-gradient(circle, #7A5C2E 0%, transparent 70%);
+  border: 3px solid #7A5C2E;
+}
+
+.hero-ornament.top-left  { top: -80px;  left: -80px; }
+.hero-ornament.bottom-right { bottom: -80px; right: -80px; }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 5rem 1.25rem;
+}
+
+.hero-text {
+  max-width: 640px;
+}
+
+.hero-tagline {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent-light);
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title .accent {
+  color: var(--color-accent-light);
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  background: var(--color-accent);
+  color: var(--color-bg-dark);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-accent);
+  transition: all var(--transition);
+  letter-spacing: 0.02em;
+}
+
+.cta-btn:hover,
+.cta-btn:focus {
+  background: transparent;
+  color: var(--color-accent-light);
+  border-color: var(--color-accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  outline: none;
+}
+
+/* ----------------------------------------------------------------
+   SZEKCIÓ KÖZÖS STÍLUSOK
+   ---------------------------------------------------------------- */
+
+section {
+  padding: 5rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--color-accent);
+  margin: 0.6rem auto 0;
+  border-radius: 2px;
+  transition: width var(--transition);
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ----------------------------------------------------------------
+   RÓLUNK SZEKCIÓ
+   ---------------------------------------------------------------- */
+
+.about {
+  background: var(--color-bg-alt);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-text p {
+  margin-bottom: 1.2rem;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.about-text p:last-child { margin-bottom: 0; }
+
+.about-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.value-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.2rem;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--color-accent);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.value-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.value-icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.value-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.4rem;
+}
+
+.value-card p {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+/* ----------------------------------------------------------------
+   TERMÉKEK SZEKCIÓ
+   ---------------------------------------------------------------- */
+
+.products {
+  background: var(--color-bg);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.product-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  transition: box-shadow var(--transition), transform var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+}
+
+.product-img-wrap {
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--color-bg-alt);
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: 1.4rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.product-desc {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.product-price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Székelyruha darabok díszítése */
+body.theme-szekely .product-card {
+  border-top: 4px solid var(--color-primary);
+}
+
+body.theme-vadasz .product-card {
+  border-top: 4px solid var(--color-primary);
+}
+
+/* ----------------------------------------------------------------
+   GALÉRIA SZEKCIÓ
+   ---------------------------------------------------------------- */
+
+.gallery {
+  background: var(--color-bg-alt);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: box-shadow var(--transition), transform var(--transition);
+  background: var(--color-surface);
+}
+
+.gallery-item:hover {
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.02);
+}
+
+.gallery-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.06);
+}
+
+.gallery-item figcaption {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  background: var(--color-surface);
+}
+
+/* ----------------------------------------------------------------
+   VÁSÁRLÓI ELŐNYÖK
+   ---------------------------------------------------------------- */
+
+.benefits {
+  background: var(--color-bg);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.benefit-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border-bottom: 4px solid var(--color-accent);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.benefit-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.benefit-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.6rem;
+}
+
+.benefit-card p {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  line-height: 1.65;
+}
+
+/* ----------------------------------------------------------------
+   KAPCSOLAT SZEKCIÓ
+   ---------------------------------------------------------------- */
+
+.contact {
+  background: var(--color-bg-alt);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.contact-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  border-top: 4px solid var(--color-primary);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.contact-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.contact-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.contact-label {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.contact-value {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+.contact-value a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.contact-value a:hover { color: var(--color-accent); }
+
+/* Közösségi média */
+.social-links {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.social-label {
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.social-link {
+  display: inline-block;
+  padding: 0.5rem 1.4rem;
+  background: var(--color-primary);
+  color: #FFF;
+  border-radius: var(--radius-lg);
+  margin: 0.25rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.social-link:hover {
+  background: var(--color-accent);
+  color: var(--color-bg-dark);
+  transform: translateY(-2px);
+}
+
+.social-placeholder {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* ----------------------------------------------------------------
+   LÁBLÉC
+   ---------------------------------------------------------------- */
+
+.site-footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  padding: 3rem 0 1.5rem;
+  transition: background var(--transition);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 1.5rem;
+}
+
+.footer-brand { flex: 1; min-width: 180px; }
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-accent-light);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.footer-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+.footer-nav-list a {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  transition: color var(--transition);
+}
+.footer-nav-list a:hover { color: var(--color-accent-light); }
+
+.footer-bottom {
+  text-align: center;
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.4rem;
+}
+
+.footer-note {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ----------------------------------------------------------------
+   SZÉKELYRUHA TÉMA – DÍSZÍTŐ RÉSZLETEK
+   ---------------------------------------------------------------- */
+
+body.theme-szekely .about,
+body.theme-szekely .gallery,
+body.theme-szekely .contact {
+  background-image: var(--ornament-pattern);
+  background-size: cover;
+}
+
+body.theme-szekely .section-title {
+  /* Hagyományos, meleg hangsúly */
+  text-shadow: 0 1px 3px rgba(139, 26, 26, 0.08);
+}
+
+/* Bordó sávos dekoráció szekeletinknél */
+body.theme-szekely .products {
+  border-top: 6px solid var(--color-primary);
+  border-bottom: 6px solid var(--color-primary);
+}
+
+/* ----------------------------------------------------------------
+   VADÁSZRUHA TÉMA – TERMÉSZETES TEXTÚRA
+   ---------------------------------------------------------------- */
+
+body.theme-vadasz .about,
+body.theme-vadasz .gallery,
+body.theme-vadasz .contact {
+  background-image: var(--ornament-pattern);
+}
+
+/* Fa-erezet hatású halvány minta a háttéren */
+body.theme-vadasz .benefits {
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 49px,
+      rgba(45, 80, 22, 0.04) 50px
+    );
+}
+
+/* ----------------------------------------------------------------
+   RESZPONZÍV – TABLET
+   ---------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-values {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+  }
+}
+
+/* ----------------------------------------------------------------
+   RESZPONZÍV – MOBIL
+   ---------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  /* Fejléc mobilon */
+  .main-nav {
+    display: none;
+    width: 100%;
+    order: 10;
+    padding: 0.75rem 0;
+  }
+
+  .main-nav.open {
+    display: block;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+  }
+
+  .nav-toggle {
+    display: flex;
+    order: 5;
+  }
+
+  .header-inner {
+    align-items: center;
+  }
+
+  .theme-switcher {
+    order: 4;
+    margin-left: auto;
+  }
+
+  /* Témaváltó mobilon kisebb */
+  .theme-btn {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.78rem;
+  }
+
+  .theme-btn span { display: none; }
+
+  /* Hero mobilon */
+  .hero-title {
+    font-size: 1.9rem;
+  }
+
+  .hero-content { padding: 3.5rem 1.25rem; }
+
+  /* Grids mobilon */
+  .products-grid,
+  .gallery-grid,
+  .benefits-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-values {
+    grid-template-columns: 1fr;
+  }
+
+  section { padding: 3rem 0; }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* ----------------------------------------------------------------
+   AKADÁLYMENTESSÉG
+   ---------------------------------------------------------------- */
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Magas kontraszt mód */
+@media (prefers-contrast: high) {
+  .nav-link,
+  .footer-nav-list a {
+    color: #FFFFFF;
+  }
+}
+
+/* Mozgás csökkentése */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ----------------------------------------------------------------
+   NYOMTATÁSI NÉZET
+   ---------------------------------------------------------------- */
+
+@media print {
+  .site-header,
+  .theme-switcher,
+  .nav-toggle,
+  .cta-btn { display: none !important; }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+}
