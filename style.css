@@ -195,7 +195,8 @@ body.theme-vadasz #szekely-gallery {
   flex-shrink: 0;
 }
 
-body.theme-szekely .logo-icon::after { content: '🌷'; }
+.logo-svg-szekely { display: none; }
+body.theme-szekely .logo-svg-szekely { display: block; }
 body.theme-vadasz  .logo-icon::after { content: '🦌'; }
 
 .logo-text {
