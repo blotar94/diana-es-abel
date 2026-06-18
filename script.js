@@ -6,6 +6,64 @@
 'use strict';
 
 /* ----------------------------------------------------------------
+   NYELVVÁLTÁS
+   ---------------------------------------------------------------- */
+
+const LANG_KEY = 'diana-abel-lang';
+
+function getNestedValue(obj, path) {
+  return path.split('.').reduce(function (o, k) {
+    return o && o[k] !== undefined ? o[k] : null;
+  }, obj);
+}
+
+function applyTranslations(lang) {
+  var t = TRANSLATIONS[lang];
+  if (!t) return;
+
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    var key = el.getAttribute('data-i18n');
+    var val = getNestedValue(t, key);
+    if (val !== null) el.textContent = val;
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+    var key = el.getAttribute('data-i18n-html');
+    var val = getNestedValue(t, key);
+    if (val !== null) el.innerHTML = val;
+  });
+
+  document.documentElement.setAttribute('lang', lang);
+}
+
+function setLang(lang) {
+  applyTranslations(lang);
+
+  var buttons = ['btn-hu', 'btn-ro', 'btn-en'];
+  buttons.forEach(function (id) {
+    var btn = document.getElementById(id);
+    if (btn) {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    }
+  });
+
+  var active = document.getElementById('btn-' + lang);
+  if (active) {
+    active.classList.add('active');
+    active.setAttribute('aria-pressed', 'true');
+  }
+
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+}
+
+function restoreLang() {
+  var saved;
+  try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
+  setLang(saved && TRANSLATIONS[saved] ? saved : 'hu');
+}
+
+/* ----------------------------------------------------------------
    TÉMAVÁLTÁS
    ---------------------------------------------------------------- */
 
@@ -326,6 +384,7 @@ document.addEventListener('keydown', function (e) {
 
 document.addEventListener('DOMContentLoaded', function () {
   restoreTheme();
+  restoreLang();
 });
 
 /* Ha a DOM már betöltött (inline script esetén) */

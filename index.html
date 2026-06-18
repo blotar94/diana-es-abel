@@ -154,11 +154,11 @@
 
       <nav class="main-nav" id="main-nav" role="navigation" aria-label="Főnavigáció">
         <ul class="nav-list">
-          <li><a href="#kezdolap" class="nav-link" onclick="closeNav()">Kezdőlap</a></li>
-          <li><a href="#termekek" class="nav-link" onclick="closeNav()">Termékek</a></li>
-          <li><a href="#rolunk" class="nav-link" onclick="closeNav()">Rólunk</a></li>
-          <li><a href="#galeria" class="nav-link" onclick="closeNav()">Galéria</a></li>
-          <li><a href="#kapcsolat" class="nav-link" onclick="closeNav()">Kapcsolat</a></li>
+          <li><a href="#kezdolap" class="nav-link" onclick="closeNav()" data-i18n="nav.home">Kezdőlap</a></li>
+          <li><a href="#termekek" class="nav-link" onclick="closeNav()" data-i18n="nav.products">Termékek</a></li>
+          <li><a href="#rolunk" class="nav-link" onclick="closeNav()" data-i18n="nav.about">Rólunk</a></li>
+          <li><a href="#galeria" class="nav-link" onclick="closeNav()" data-i18n="nav.gallery">Galéria</a></li>
+          <li><a href="#kapcsolat" class="nav-link" onclick="closeNav()" data-i18n="nav.contact">Kapcsolat</a></li>
         </ul>
       </nav>
 
@@ -166,12 +166,19 @@
       <div class="theme-switcher" role="group" aria-label="Stílusváltó">
         <button class="theme-btn active" id="btn-szekely" onclick="setTheme('szekely')"
           aria-pressed="true" aria-label="Székelyruha stílus">
-          <span aria-hidden="true">🪡</span> Székelyruha
+          <span aria-hidden="true">🪡</span> <span data-i18n="theme.szekely">Székelyruha</span>
         </button>
         <button class="theme-btn" id="btn-vadasz" onclick="setTheme('vadasz')"
           aria-pressed="false" aria-label="Vadászruha stílus">
-          <span aria-hidden="true">🌲</span> Vadászruha
+          <span aria-hidden="true">🌲</span> <span data-i18n="theme.vadasz">Vadászruha</span>
         </button>
+      </div>
+
+      <!-- Nyelvváltó gombok -->
+      <div class="lang-switcher" role="group" aria-label="Nyelvváltó">
+        <button class="lang-btn active" id="btn-hu" onclick="setLang('hu')" aria-pressed="true">HU</button>
+        <button class="lang-btn" id="btn-ro" onclick="setLang('ro')" aria-pressed="false">RO</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-pressed="false">EN</button>
       </div>
 
       <!-- Hamburger gomb mobilhoz -->
@@ -199,33 +206,33 @@
 
         <!-- Székelyruha hero -->
         <div class="hero-text theme-szekely-only">
-          <p class="hero-tagline">Hagyományőrző erdélyi székely viselet</p>
+          <p class="hero-tagline" data-i18n="hero.szekely.tagline">Hagyományőrző erdélyi székely viselet</p>
           <h1 id="hero-heading" class="hero-title">
-            Székelyruha –<br />
-            <span class="accent">Az Ünnepi Örökség Öltözéke</span>
+            <span data-i18n="hero.szekely.title1">Székelyruha –</span><br />
+            <span class="accent" data-i18n="hero.szekely.title2">Az Ünnepi Örökség Öltözéke</span>
           </h1>
-          <p class="hero-desc">
+          <p class="hero-desc" data-i18n-html="hero.szekely.desc">
             Hagyományos <strong>székely népviselet</strong> és ünnepi ruházat azoknak,
             akik büszkén hordják Erdély kulturális örökségét. Egyedi darabok rendezvényekre,
             ünnepekre és mindennapi hagyományőrzésre.
           </p>
-          <a href="#termekek" class="cta-btn" aria-label="Székelyruha kínálatunk megtekintése">
+          <a href="#termekek" class="cta-btn" aria-label="Székelyruha kínálatunk megtekintése" data-i18n="hero.szekely.cta">
             Fedezze fel viseleteinket
           </a>
         </div>
 
         <!-- Vadászruha hero -->
         <div class="hero-text theme-vadasz-only" aria-hidden="true">
-          <p class="hero-tagline">Minőségi kültéri és vadász ruházat</p>
+          <p class="hero-tagline" data-i18n="hero.vadasz.tagline">Minőségi kültéri és vadász ruházat</p>
           <h1 class="hero-title">
-            Vadászruha &amp; Erdészeti Öltözet –<br />
-            <span class="accent">Természetben Otthon</span>
+            <span data-i18n="hero.vadasz.title1">Vadászruha &amp; Erdészeti Öltözet –</span><br />
+            <span class="accent" data-i18n="hero.vadasz.title2">Természetben Otthon</span>
           </h1>
-          <p class="hero-desc">
+          <p class="hero-desc" data-i18n-html="hero.vadasz.desc">
             Strapabíró, kényelmes és időjárásálló <strong>vadász-, erdészeti</strong>, ruha és terepi öltözet
             természetjáróknak, vadászoknak és erdőkedvelőknek. Minőség, amely kitart az erdőn is.
           </p>
-          <a href="#termekek" class="cta-btn" aria-label="Vadászruha kínálatunk megtekintése">
+          <a href="#termekek" class="cta-btn" aria-label="Vadászruha kínálatunk megtekintése" data-i18n="hero.vadasz.cta">
             Tekintse meg kínálatunkat
           </a>
         </div>
@@ -241,13 +248,13 @@
 
         <div class="section-header">
           <h2 id="about-heading" class="section-title">
-            <span class="theme-szekely-only">Az Értékőrző Hagyomány Háza</span>
-            <span class="theme-vadasz-only">Az Erdő Emberének Ruhatára</span>
+            <span class="theme-szekely-only" data-i18n="about.szekely.heading">Az Értékőrző Hagyomány Háza</span>
+            <span class="theme-vadasz-only" data-i18n="about.vadasz.heading">Az Erdő Emberének Ruhatára</span>
           </h2>
-          <p class="section-subtitle theme-szekely-only">
+          <p class="section-subtitle theme-szekely-only" data-i18n="about.szekely.subtitle">
             Hagyományos székely viselet és ünnepi népruha azoknak, akik az örökséget öltözékükben is hordozzák
           </p>
-          <p class="section-subtitle theme-vadasz-only">
+          <p class="section-subtitle theme-vadasz-only" data-i18n="about.vadasz.subtitle">
             Minőségi vadász- és erdészeti ruházat, amely kitart a legszigorúbb természeti körülmények között is
           </p>
         </div>
@@ -256,49 +263,26 @@
           <div class="about-text">
 
             <div class="theme-szekely-only">
-              <p>
+              <p data-i18n-html="about.szekely.p1">
                 A <strong>Diána és Ábel</strong> ruházati üzlet szenvedélyből és hagyománytiszteletből született.
-                Hitvallásunk szerint az erdélyi <strong>székely viselet</strong> nem csupán ruhadarab – élő
-                kulturális örökség, amelyet minden öltözéssel tovább kell adni. Kínálatunkban hagyományos
-                <strong>székelyruhát</strong>, díszes <strong>ünnepi népviseletet</strong> és válogatott
-                <strong>erdélyi népi motívumokkal</strong> díszített darabokat találnak azok, akik egy ünnepi
-                rendezvényre, hagyományőrző eseményre vagy egyszerűen egy különleges alkalomra keresnek
-                autentikus viselete.
               </p>
-              <p>
-                A <strong>hagyományos székely viselet</strong> évszázados üzenetet hordoz: a közösséghez
-                tartozást, az ünnep tiszteletét és az erdélyi kultúra büszke vállalását. Nálunk megtalálja
-                a <strong>székely férfi viselet</strong> és a <strong>hagyományos székely női ruha</strong>
-                széles választékát, ünnepi mellényeket, díszes ingeket és aprólékosan kidolgozott gyermek
-                viseleteket is. Minden darabot gondos odafigyeléssel készítünk el, hogy az igény és a minőség találkozzon.
+              <p data-i18n-html="about.szekely.p2">
+                A <strong>hagyományos székely viselet</strong> évszázados üzenetet hordoz.
               </p>
-              <p>
-                Legyen szó <strong>kulturális rendezvényről</strong>, falusi lakodalomról, iskolai ünnepségről
-                vagy egyszerűen az otthoni hagyományőrzésről – nálunk mindig talál megfelelő
-                <strong>székely népviseletet</strong>t, amely méltón képviseli az erdélyi népi kultúrát.
+              <p data-i18n-html="about.szekely.p3">
+                Legyen szó <strong>kulturális rendezvényről</strong>, falusi lakodalomról, iskolai ünnepségről.
               </p>
             </div>
 
             <div class="theme-vadasz-only">
-              <p>
-                A <strong>Diána és Ábel</strong> üzlet a természet szerelmeseinek kínál megbízható, strapabíró
-                és kényelmes ruházatot. <strong>Vadászruha-kínálatunk</strong> célja, hogy a terepen minden
-                körülmény között a legjobb öltözékben legyenek ügyfeleink – legyen szó hajnali vadlesről,
-                egész napos természetjárásról vagy az erdei munkáról.
+              <p data-i18n-html="about.vadasz.p1">
+                A <strong>Diána és Ábel</strong> üzlet a természet szerelmeseinek kínál megbízható ruházatot.
               </p>
-              <p>
-                <strong>Vadászkabátjaink</strong>, <strong>erdészeti nadrágjaink</strong> és
-                <strong>terepi mellényeink</strong> prémium anyagokból készülnek: vízálló, szél ellen védő,
-                kopásálló szövetek, amelyek ellenállnak az erdő minden kihívásának. Az
-                <strong>erdészeti ruházat</strong> tervezésénél szempont a mozgásszabadság, a csendes
-                anyaghasználat és a terepszínű minták, amelyek a természetben is előnyt jelentenek.
+              <p data-i18n-html="about.vadasz.p2">
+                <strong>Vadászkabátjaink</strong>, <strong>erdészeti nadrágjaink</strong> és <strong>terepi mellényeink</strong> prémium anyagokból készülnek.
               </p>
-              <p>
+              <p data-i18n-html="about.vadasz.p3">
                 Termékeinket vadászok, erdészek és természetjárók igényei alapján válogattuk össze.
-                Kínálatunkban megtalálható a könnyű <strong>terepi ing</strong>, a meleg
-                <strong>téli vadászmellény</strong>, a megerősített <strong>vadásznadrág</strong> és a
-                funkcionalitást elegáns megjelenéssel ötvöző <strong>kültéri kabát</strong>. Azoknak szól,
-                akik az erdőn is kényelemben és stílusban szeretnének mozogni.
               </p>
             </div>
 
@@ -309,37 +293,37 @@
               <span class="value-icon theme-szekely-only" aria-hidden="true"><svg width="36" height="36"><use href="#szekely-tulipan"/></svg></span>
               <span class="value-icon theme-vadasz-only" aria-hidden="true">🍃</span>
               <h3 class="value-title">
-                <span class="theme-szekely-only">Minőségi kidolgozás</span>
-                <span class="theme-vadasz-only">Prémium anyagok</span>
+                <span class="theme-szekely-only" data-i18n="about.values.quality_title_sz">Minőségi kidolgozás</span>
+                <span class="theme-vadasz-only" data-i18n="about.values.quality_title_v">Prémium anyagok</span>
               </h3>
-              <p class="theme-szekely-only">Minden egyes székelyruha aprólékos kézimunkával és gondos anyagválasztással készül.</p>
-              <p class="theme-vadasz-only">Csak tartós, időjárásálló szövetek, amelyek valóban helytállnak a természetben.</p>
+              <p class="theme-szekely-only" data-i18n="about.values.quality_desc_sz">Minden egyes székelyruha aprólékos kézimunkával és gondos anyagválasztással készül.</p>
+              <p class="theme-vadasz-only" data-i18n="about.values.quality_desc_v">Csak tartós, időjárásálló szövetek, amelyek valóban helytállnak a természetben.</p>
             </div>
             <div class="value-card">
               <span class="value-icon theme-szekely-only" aria-hidden="true"><svg width="36" height="36"><use href="#szekely-galamb"/></svg></span>
               <span class="value-icon theme-vadasz-only" aria-hidden="true">🦌</span>
               <h3 class="value-title">
-                <span class="theme-szekely-only">Hagyománytisztelet</span>
-                <span class="theme-vadasz-only">Terepi tapasztalat</span>
+                <span class="theme-szekely-only" data-i18n="about.values.tradition_title_sz">Hagyománytisztelet</span>
+                <span class="theme-vadasz-only" data-i18n="about.values.tradition_title_v">Terepi tapasztalat</span>
               </h3>
-              <p class="theme-szekely-only">Az erdélyi népi kultúra értékeit őrizzük és adjuk tovább minden egyes viseletben.</p>
-              <p class="theme-vadasz-only">Kínálatunkat vadászok és erdőjárók visszajelzései alapján folyamatosan fejlesztjük.</p>
+              <p class="theme-szekely-only" data-i18n="about.values.tradition_desc_sz">Az erdélyi népi kultúra értékeit őrizzük és adjuk tovább minden egyes viseletben.</p>
+              <p class="theme-vadasz-only" data-i18n="about.values.tradition_desc_v">Kínálatunkat vadászok és erdőjárók visszajelzései alapján folyamatosan fejlesztjük.</p>
             </div>
             <div class="value-card">
               <span class="value-icon theme-szekely-only" aria-hidden="true"><svg width="36" height="36"><use href="#szekely-virag"/></svg></span>
               <span class="value-icon theme-vadasz-only" aria-hidden="true">🌲</span>
               <h3 class="value-title">
-                <span class="theme-szekely-only">Ünnepi alkalmak</span>
-                <span class="theme-vadasz-only">Kényelmes mozgás</span>
+                <span class="theme-szekely-only" data-i18n="about.values.occasion_title_sz">Ünnepi alkalmak</span>
+                <span class="theme-vadasz-only" data-i18n="about.values.occasion_title_v">Kényelmes mozgás</span>
               </h3>
-              <p class="theme-szekely-only">Viseleteinket rendezvényekre, ünnepségekre és kulturális eseményekre is ajánljuk.</p>
-              <p class="theme-vadasz-only">Tág szabású, ergonomikus tervezés – hogy a hosszú terepnapok se okozzanak gondot.</p>
+              <p class="theme-szekely-only" data-i18n="about.values.occasion_desc_sz">Viseleteinket rendezvényekre, ünnepségekre és kulturális eseményekre is ajánljuk.</p>
+              <p class="theme-vadasz-only" data-i18n="about.values.occasion_desc_v">Tág szabású, ergonomikus tervezés – hogy a hosszú terepnapok se okozzanak gondot.</p>
             </div>
             <div class="value-card">
               <span class="value-icon theme-szekely-only" aria-hidden="true"><svg width="36" height="36"><use href="#szekely-rozetta"/></svg></span>
               <span class="value-icon theme-vadasz-only" aria-hidden="true">🐾</span>
-              <h3 class="value-title">Személyes kiszolgálás</h3>
-              <p>Kis üzletünkben személyre szabott tanácsadással segítünk megtalálni az önnek való darabot.</p>
+              <h3 class="value-title" data-i18n="about.values.personal_title">Személyes kiszolgálás</h3>
+              <p data-i18n="about.values.personal_desc">Kis üzletünkben személyre szabott tanácsadással segítünk megtalálni az önnek való darabot.</p>
             </div>
           </div>
         </div>
@@ -355,13 +339,13 @@
 
         <div class="section-header">
           <h2 id="products-heading" class="section-title">
-            <span class="theme-szekely-only">Székelyruha Kínálatunk</span>
-            <span class="theme-vadasz-only">Vadászruha Kínálatunk</span>
+            <span class="theme-szekely-only" data-i18n="products.szekely.heading">Székelyruha Kínálatunk</span>
+            <span class="theme-vadasz-only" data-i18n="products.vadasz.heading">Vadászruha Kínálatunk</span>
           </h2>
-          <p class="section-subtitle theme-szekely-only">
+          <p class="section-subtitle theme-szekely-only" data-i18n="products.szekely.subtitle">
             Hagyományos erdélyi viselet – ünnepi ruhák, mellények és népi motívumos darabok
           </p>
-          <p class="section-subtitle theme-vadasz-only">
+          <p class="section-subtitle theme-vadasz-only" data-i18n="products.vadasz.subtitle">
             Minőségi kültéri és vadász ruházat – kabátok, nadrágok, mellények, terepi ingek
           </p>
         </div>
@@ -376,15 +360,10 @@
                 loading="lazy" class="product-img" />
             </div>
             <div class="product-info">
-              <h3 id="prod-sz-1" class="product-name">Ünnepi Székely Férfi Viselet</h3>
-              <p class="product-desc">
-                Klasszikus <strong>ünnepi székely férfi viselet</strong>, amely méltón képviseli az erdélyi
-                hagyományokat. Az öltözék hagyományos népi motívumokkal díszített fehér inget, díszes
-                mellényt és viseletnadrágot és székelycsizmát foglal magában. Alkalmas falusi lakodalomra, kulturális
-                rendezvényre, iskolai ünnepségre vagy bármilyen <strong>hagyományőrző eseményre</strong>.
-                Az anyagok kellemes tapintásúak és tartósak – hosszú ünnepeken is.
+              <h3 id="prod-sz-1" class="product-name" data-i18n="products.szekely.p1_name">Ünnepi Székely Férfi Viselet</h3>
+              <p class="product-desc" data-i18n-html="products.szekely.p1_desc">
+                Klasszikus <strong>ünnepi székely férfi viselet</strong>, amely méltón képviseli az erdélyi hagyományokat.
               </p>
-              
             </div>
           </article>
 
@@ -395,19 +374,12 @@
                 loading="lazy" class="product-img" />
             </div>
             <div class="product-info">
-              <h3 id="prod-sz-2" class="product-name">Hagyományos Székely Női Ruha</h3>
-              <p class="product-desc">
+              <h3 id="prod-sz-2" class="product-name" data-i18n="products.szekely.p2_name">Hagyományos Székely Női Ruha</h3>
+              <p class="product-desc" data-i18n-html="products.szekely.p2_desc">
                 A <strong>hagyományos székely női ruha</strong> az erdélyi népviselet egyik legszebb darabja.
-                Kézimunkás hímzésekkel, aprólékos népi motívumokkal díszített ünnepi öltözék, amelyet
-                büszkén hordhatnak azok, akik fontosnak tartják kulturális gyökereiket. Az elegáns,
-                meleg színvilág – bordó, törtfehér – tökéletesen illeszkedik ünnepi alkalmakhoz
-                és <strong>erdélyi népviselet</strong>hez kötődő rendezvényekhez.
               </p>
-              
             </div>
           </article>
-
-        
 
           <article class="product-card" aria-labelledby="prod-sz-4">
             <div class="product-img-wrap">
@@ -416,12 +388,9 @@
                 loading="lazy" class="product-img" />
             </div>
             <div class="product-info">
-              <h3 id="prod-sz-4" class="product-name">Gyermek Székely Viselet</h3>
-              <p class="product-desc">
-                Mert a hagyomány a legkisebbektől kezdődik. A <strong>gyermek székely viselet</strong>
-                ugyanolyan gondossággal és <strong>népi motívumokkal</strong> készül, mint a felnőtt darabok.
-                Tökéletes iskolai ünnepségekre, gyermek néptánccsoportba, falusi rendezvényekre –
-                hogy a legkisebbek is büszkén hordják az erdélyi örökséget.
+              <h3 id="prod-sz-4" class="product-name" data-i18n="products.szekely.p4_name">Gyermek Székely Viselet</h3>
+              <p class="product-desc" data-i18n-html="products.szekely.p4_desc">
+                Mert a hagyomány a legkisebbektől kezdődik.
               </p>
             </div>
           </article>    
@@ -437,16 +406,9 @@
                 loading="lazy" class="product-img" />
             </div>
             <div class="product-info">
-              <h3 id="prod-v-1" class="product-name">Fleece Vadászkabát Bőrpanelekkel</h3>
-              <p class="product-desc">
-                Sűrű szövésű olívazöld <strong>fleece vadászkabát</strong>, amelyet bőrbetétes
-                váll- és könyökpanelek erősítenek meg a leginkább igénybe vett részeken.
-                Cipzáros mellzsebbel és oldalsó zsebekkel szerelt – minden felszerelés kéznél
-                van. Kiváló hőszigetelést nyújt anélkül, hogy nehézzé válna, így hajnali
-                vadleseken, őszi erdőjáráson és hűvös terepi napokon egyaránt kényelmes viselet.
-                Valódi <strong>minőségi vadászöltözet</strong> azoknak, akik nem alkusznak meg.
-              </p>
-              <p class="product-price">Ár: érdeklődés alapján</p>
+              <h3 id="prod-v-1" class="product-name" data-i18n="products.vadasz.p1_name">Fleece Vadászkabát Bőrpanelekkel</h3>
+              <p class="product-desc" data-i18n-html="products.vadasz.p1_desc">Sűrű szövésű olívazöld <strong>fleece vadászkabát</strong>.</p>
+              <p class="product-price" data-i18n="products.vadasz.p1_price">Ár: érdeklődés alapján</p>
             </div>
           </article>
 
@@ -457,17 +419,9 @@
                 loading="lazy" class="product-img" />
             </div>
             <div class="product-info">
-              <h3 id="prod-v-2" class="product-name">Vadásznadrág Cipzáros Zsebekkel</h3>
-              <p class="product-desc">
-                Masszív, olívazöld <strong>vadásznadrág</strong> cipzáros combzsebekkel és
-                megerősített térdrésszel. A vastag, kopásálló anyag ellenáll a bokroknak,
-                ágaknak és a nedves terepnek egyaránt. A derékrészen gombos záródás és
-                oldalsó cipzárak biztosítják a kényelmes felöltést és a stabil viselést.
-                Bő szabása szabad mozgást tesz lehetővé egész napos <strong>terepi
-                ruházat</strong>ként – vadászathoz, erdőjáráshoz és természetjáráshoz egyaránt
-                kiváló választás.
-              </p>
-              <p class="product-price">Ár: érdeklődés alapján</p>
+              <h3 id="prod-v-2" class="product-name" data-i18n="products.vadasz.p2_name">Vadásznadrág Cipzáros Zsebekkel</h3>
+              <p class="product-desc" data-i18n-html="products.vadasz.p2_desc">Masszív, olívazöld <strong>vadásznadrág</strong>.</p>
+              <p class="product-price" data-i18n="products.vadasz.p2_price">Ár: érdeklődés alapján</p>
             </div>
           </article>
 
@@ -478,16 +432,9 @@
                 loading="lazy" class="product-img" />
             </div>
             <div class="product-info">
-              <h3 id="prod-v-3" class="product-name">HART Steppelt Vadászmellény</h3>
-              <p class="product-desc">
-                Prémium <strong>HART</strong> márkájú steppelt <strong>vadász mellény</strong>
-                sötétbarna színben, narancssárga cipzárhúzókkal. A vékony, de rendkívül meleg
-                töltet hatékonyan tartja a testhőt, miközben a mellény nem korlátozza a
-                mozgást és nem nehezíti a viseletet. Három cipzáros zsebbel szerelt –
-                praktikus felszerelés tároláshoz. Kiváló rétegezési darab hideg hajnali
-                vadlesekre és őszi <strong>természetjáró ruha</strong>ként egyaránt.
-              </p>
-              <p class="product-price">Ár: érdeklődés alapján</p>
+              <h3 id="prod-v-3" class="product-name" data-i18n="products.vadasz.p3_name">HART Steppelt Vadászmellény</h3>
+              <p class="product-desc" data-i18n-html="products.vadasz.p3_desc">Prémium <strong>HART</strong> márkájú steppelt <strong>vadász mellény</strong>.</p>
+              <p class="product-price" data-i18n="products.vadasz.p3_price">Ár: érdeklődés alapján</p>
             </div>
           </article>
 
@@ -498,16 +445,9 @@
                 loading="lazy" class="product-img" />
             </div>
             <div class="product-info">
-              <h3 id="prod-v-4" class="product-name">Vadászkalap Gyapjúból</h3>
-              <p class="product-desc">
-                Klasszikus sötét olívazöld <strong>vadászkalap</strong> gyapjúfilcből, fonott
-                bőrpánttal és fém díszgombokkal. A széles karimájú kalap hatékonyan véd eső,
-                szél és napsütés ellen – nélkülözhetetlen kiegészítője minden
-                <strong>vadász ruházatnak</strong>. Tartós, formastabil anyaga évek múlva is
-                megőrzi alakját. Hagyományos stílusú, mégis praktikus terepi fejfedő
-                vadászoknak, erdészeknek és természetjáróknak egyaránt.
-              </p>
-              <p class="product-price">Ár: érdeklődés alapján</p>
+              <h3 id="prod-v-4" class="product-name" data-i18n="products.vadasz.p4_name">Vadászkalap Gyapjúból</h3>
+              <p class="product-desc" data-i18n-html="products.vadasz.p4_desc">Klasszikus sötét olívazöld <strong>vadászkalap</strong>.</p>
+              <p class="product-price" data-i18n="products.vadasz.p4_price">Ár: érdeklődés alapján</p>
             </div>
           </article>
 
@@ -518,16 +458,9 @@
                 loading="lazy" class="product-img" />
             </div>
             <div class="product-info">
-              <h3 id="prod-v-5" class="product-name">OS Trachten Kockás Vadászing</h3>
-              <p class="product-desc">
-                Hagyományos <strong>OS Trachten</strong> vadászing zöld-barna-fehér kockás
-                mintával, slim fit szabásban. Rövid ujjú, könnyű pamutanyagból készült –
-                ideális melegebb terepi napokra, nyári természetjárásra és hétköznapi
-                viselésre. A klasszikus tiroli-vadász stílus és a modern kényelmes szabás
-                ötvözete. Kiváló választás azoknak, akik a <strong>terepi ruházat</strong>ban
-                is szeretnék megőrizni a hagyományos, igényes megjelenést.
-              </p>
-              <p class="product-price">Ár: érdeklődés alapján</p>
+              <h3 id="prod-v-5" class="product-name" data-i18n="products.vadasz.p5_name">OS Trachten Kockás Vadászing</h3>
+              <p class="product-desc" data-i18n-html="products.vadasz.p5_desc">Hagyományos <strong>OS Trachten</strong> vadászing.</p>
+              <p class="product-price" data-i18n="products.vadasz.p5_price">Ár: érdeklődés alapján</p>
             </div>
           </article>
 
@@ -544,14 +477,14 @@
 
         <div class="section-header">
           <h2 id="gallery-heading" class="section-title">
-            <span class="theme-szekely-only">Képgaléria – Hagyományos Viselet</span>
-            <span class="theme-vadasz-only">Képgaléria – Terepi Ruházat</span>
+            <span class="theme-szekely-only" data-i18n="gallery.szekely.heading">Képgaléria – Hagyományos Viselet</span>
+            <span class="theme-vadasz-only" data-i18n="gallery.vadasz.heading">Képgaléria – Terepi Ruházat</span>
           </h2>
-          <p class="section-subtitle theme-szekely-only">
+          <p class="section-subtitle theme-szekely-only" data-i18n-html="gallery.szekely.subtitle">
             Tekintse meg <strong>székelyruha</strong> kínálatunkat képekben – hagyományos erdélyi viselet,
             ünnepi népi motívumok és kézműves darabok válogatása
           </p>
-          <p class="section-subtitle theme-vadasz-only">
+          <p class="section-subtitle theme-vadasz-only" data-i18n-html="gallery.vadasz.subtitle">
             Böngéssze <strong>vadászruha</strong> és kültéri ruházat képgalériánkat –
             strapabíró terepi öltözetek, vadászkabátok és erdészeti ruházat bemutatója
           </p>
@@ -798,8 +731,8 @@
       <div class="container">
 
         <div class="section-header">
-          <h2 id="benefits-heading" class="section-title">Miért Válasszon Minket?</h2>
-          <p class="section-subtitle">
+          <h2 id="benefits-heading" class="section-title" data-i18n="benefits.heading">Miért Válasszon Minket?</h2>
+          <p class="section-subtitle" data-i18n="benefits.subtitle">
             Minőségi viselet, hagyományőrző szemlélet és személyes kiszolgálás – ez a Diána &amp; Ábel garancia
           </p>
         </div>
@@ -808,60 +741,46 @@
           <div class="benefit-card">
             <div class="benefit-icon theme-szekely-only" aria-hidden="true"><svg width="42" height="42"><use href="#szekely-tulipan"/></svg></div>
             <div class="benefit-icon theme-vadasz-only" aria-hidden="true">🍂</div>
-            <h3 class="benefit-title">Minőségi Anyagok</h3>
-            <p>Csak válogatott, tartós anyagokat kínálunk. Székelyruhánk természetes, kellemes tapintású
-            szövetekből készül, vadászruháink prémium, időjárásálló, kopásálló textíliákból – minden darab
-            hosszú évekig megőrzi minőségét.</p>
+            <h3 class="benefit-title" data-i18n="benefits.b1_title">Minőségi Anyagok</h3>
+            <p data-i18n="benefits.b1_desc">Csak válogatott, tartós anyagokat kínálunk.</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon theme-szekely-only" aria-hidden="true"><svg width="42" height="42"><use href="#szekely-turul"/></svg></div>
             <div class="benefit-icon theme-vadasz-only" aria-hidden="true">🌲</div>
             <h3 class="benefit-title">
-              <span class="theme-szekely-only">Hagyománytisztelő Megjelenés</span>
-              <span class="theme-vadasz-only">Természetközeli Kialakítás</span>
+              <span class="theme-szekely-only" data-i18n="benefits.b2_title_sz">Hagyománytisztelő Megjelenés</span>
+              <span class="theme-vadasz-only" data-i18n="benefits.b2_title_v">Természetközeli Kialakítás</span>
             </h3>
-            <p class="theme-szekely-only">Minden <strong>hagyományőrző ruha</strong> darabunkon megjelenik
-            az erdélyi népviselet autentikus jegyei – népi motívumok, ünnepi színek, jellegzetes szabás.</p>
-            <p class="theme-vadasz-only">Vadászruháink terepmintái és természetes zöld-barna árnyalatai
-            az erdő esztétikáját idézik – nem csak funkcionálisak, de a természetben is otthonosak.</p>
+            <p class="theme-szekely-only" data-i18n-html="benefits.b2_desc_sz">Minden <strong>hagyományőrző ruha</strong> darabunkon megjelenik az erdélyi népviselet autentikus jegyei.</p>
+            <p class="theme-vadasz-only" data-i18n="benefits.b2_desc_v">Vadászruháink terepmintái és természetes zöld-barna árnyalatai az erdő esztétikáját idézik.</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon theme-szekely-only" aria-hidden="true"><svg width="42" height="42"><use href="#szekely-galamb"/></svg></div>
             <div class="benefit-icon theme-vadasz-only" aria-hidden="true">🦌</div>
-            <h3 class="benefit-title">Kényelmes Viselet</h3>
-            <p>Az ünnepi viselet is lehet kényelmes. Székelyruhánk bő szabása és puha anyagai hosszú
-            rendezvényeken is kényelmes viselést biztosítanak. Vadászruháink ergonomikus kialakítása
-            szabad mozgást ad terepjáráson is.</p>
+            <h3 class="benefit-title" data-i18n="benefits.b3_title">Kényelmes Viselet</h3>
+            <p data-i18n="benefits.b3_desc">Az ünnepi viselet is lehet kényelmes.</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon theme-szekely-only" aria-hidden="true"><svg width="42" height="42"><use href="#szekely-virag"/></svg></div>
             <div class="benefit-icon theme-vadasz-only" aria-hidden="true">🐗</div>
             <h3 class="benefit-title">
-              <span class="theme-szekely-only">Ünnepi &amp; Mindennapi Viselet</span>
-              <span class="theme-vadasz-only">Strapabíró Kültéri Ruházat</span>
+              <span class="theme-szekely-only" data-i18n="benefits.b4_title_sz">Ünnepi &amp; Mindennapi Viselet</span>
+              <span class="theme-vadasz-only" data-i18n="benefits.b4_title_v">Strapabíró Kültéri Ruházat</span>
             </h3>
-            <p class="theme-szekely-only">Viseleteinket lakodalomra, ünnepségre, néptáncra és kulturális
-            rendezvényre egyaránt ajánljuk – és a hagyományőrző szív hétköznap is felvehet belőle egy-egy
-            kedves darabot.</p>
-            <p class="theme-vadasz-only">Vadász- és erdészeti ruháink nem adják meg magukat hamar.
-            Megerősített varratok, tartós cipzárak, kopásálló anyagok – mert a terepen a ruha is
-            dolgozik.</p>
+            <p class="theme-szekely-only" data-i18n="benefits.b4_desc_sz">Viseleteinket lakodalomra, ünnepségre, néptáncra és kulturális rendezvényre egyaránt ajánljuk.</p>
+            <p class="theme-vadasz-only" data-i18n="benefits.b4_desc_v">Vadász- és erdészeti ruháink nem adják meg magukat hamar.</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon theme-szekely-only" aria-hidden="true"><svg width="42" height="42"><use href="#szekely-rozetta"/></svg></div>
             <div class="benefit-icon theme-vadasz-only" aria-hidden="true">🌿</div>
-            <h3 class="benefit-title">Személyes Tanácsadás</h3>
-            <p>Kis üzletünkben minden vásárlónak időt szánunk. Segítünk megtalálni a megfelelő méretet,
-            összeállítani a viselet szettjét, és eldönteni, melyik darab illik leginkább az alkalomhoz
-            vagy a terepi célhoz.</p>
+            <h3 class="benefit-title" data-i18n="benefits.b5_title">Személyes Tanácsadás</h3>
+            <p data-i18n="benefits.b5_desc">Kis üzletünkben minden vásárlónak időt szánunk.</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon theme-szekely-only" aria-hidden="true"><svg width="42" height="42"><use href="#szekely-sziv"/></svg></div>
             <div class="benefit-icon theme-vadasz-only" aria-hidden="true">🌲</div>
-            <h3 class="benefit-title">Széleskörű Kínálat</h3>
-            <p><strong>Székelyruha és vadászruha egy helyen</strong> – nem kell két üzletet végigjárni.
-            Legyen szó ünnepi erdélyi viseletről vagy strapabíró terepi öltözékről, nálunk megtalálja
-            a keresett darabot a teljes família számára, gyermektől felnőttig.</p>
+            <h3 class="benefit-title" data-i18n="benefits.b6_title">Széleskörű Kínálat</h3>
+            <p data-i18n-html="benefits.b6_desc"><strong>Székelyruha és vadászruha egy helyen</strong>.</p>
           </div>
         </div>
 
@@ -875,8 +794,8 @@
       <div class="container">
 
         <div class="section-header">
-          <h2 id="contact-heading" class="section-title">Kapcsolat &amp; Elérhetőség</h2>
-          <p class="section-subtitle">
+          <h2 id="contact-heading" class="section-title" data-i18n="contact.heading">Kapcsolat &amp; Elérhetőség</h2>
+          <p class="section-subtitle" data-i18n="contact.subtitle">
             Látogasson el hozzánk személyesen, vagy keressen minket az alábbi elérhetőségeken
           </p>
         </div>
@@ -886,7 +805,7 @@
 
           <div class="contact-card">
             <span class="contact-icon" aria-hidden="true">📍</span>
-            <h3 class="contact-label">Cím</h3>
+            <h3 class="contact-label" data-i18n="contact.address_label">Cím</h3>
             <!-- SZERKESZTHETŐ: Valódi cím -->
             <address class="contact-value">
               Strada Petőfi Sandor, 135<br />
@@ -896,7 +815,7 @@
 
           <div class="contact-card">
             <span class="contact-icon" aria-hidden="true">📞</span>
-            <h3 class="contact-label">Telefon</h3>
+            <h3 class="contact-label" data-i18n="contact.phone_label">Telefon</h3>
             <!-- SZERKESZTHETŐ: Valódi telefonszám -->
             <p class="contact-value">
               <a href="tel:+40749925243" aria-label="Telefonszám: 0749 925 243">0749 925 243</a>
@@ -905,7 +824,7 @@
 
           <div class="contact-card">
             <span class="contact-icon" aria-hidden="true">✉️</span>
-            <h3 class="contact-label">E-mail</h3>
+            <h3 class="contact-label" data-i18n="contact.email_label">E-mail</h3>
             <!-- SZERKESZTHETŐ: Valódi e-mail cím -->
             <p class="contact-value">
               <a href="mailto:szekely.vadasz@gmail.com">szekely.vadasz@gmail.com</a>
@@ -914,9 +833,8 @@
 
           <div class="contact-card">
             <span class="contact-icon" aria-hidden="true">🕐</span>
-            <h3 class="contact-label">Nyitvatartás</h3>
-            <!-- SZERKESZTHETŐ: Nyitvatartás -->
-            <p class="contact-value">
+            <h3 class="contact-label" data-i18n="contact.hours_label">Nyitvatartás</h3>
+            <p class="contact-value" data-i18n-html="contact.hours_val">
               Hétfő–Péntek: 09:00–17:00<br />
               Szombat: 12:00–14:00<br />
               Vasárnap: zárva
@@ -927,7 +845,7 @@
 
         <!-- SZERKESZTHETŐ: Közösségi média linkek -->
         <div class="social-links">
-          <p class="social-label">Kövessen minket közösségi médiában:</p>
+          <p class="social-label" data-i18n="contact.social_label">Kövessen minket közösségi médiában:</p>
           <a href="https://www.facebook.com/szekelynepviselet" class="social-link theme-szekely-only" target="_blank" rel="noopener noreferrer" aria-label="Facebook oldalunk">
             Facebook
           </a>
@@ -950,17 +868,17 @@
 
         <div class="footer-brand">
           <span class="footer-logo">Diána &amp; Ábel</span>
-          <p class="footer-tagline theme-szekely-only">Hagyományos Erdélyi Viselet</p>
-          <p class="footer-tagline theme-vadasz-only">Minőségi Kültéri Ruházat</p>
+          <p class="footer-tagline theme-szekely-only" data-i18n="footer.szekely_tagline">Hagyományos Erdélyi Viselet</p>
+          <p class="footer-tagline theme-vadasz-only" data-i18n="footer.vadasz_tagline">Minőségi Kültéri Ruházat</p>
         </div>
 
         <nav class="footer-nav" aria-label="Lábléc navigáció">
           <ul class="footer-nav-list">
-            <li><a href="#kezdolap">Kezdőlap</a></li>
-            <li><a href="#termekek">Termékek</a></li>
-            <li><a href="#rolunk">Rólunk</a></li>
-            <li><a href="#galeria">Galéria</a></li>
-            <li><a href="#kapcsolat">Kapcsolat</a></li>
+            <li><a href="#kezdolap" data-i18n="nav.home">Kezdőlap</a></li>
+            <li><a href="#termekek" data-i18n="nav.products">Termékek</a></li>
+            <li><a href="#rolunk" data-i18n="nav.about">Rólunk</a></li>
+            <li><a href="#galeria" data-i18n="nav.gallery">Galéria</a></li>
+            <li><a href="#kapcsolat" data-i18n="nav.contact">Kapcsolat</a></li>
           </ul>
         </nav>
 
@@ -986,6 +904,7 @@
     </div>
   </footer>
 
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

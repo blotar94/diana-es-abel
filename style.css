@@ -283,6 +283,38 @@ body.theme-vadasz  .logo-icon::after { content: '🦌'; }
   color: var(--color-bg-dark);
 }
 
+/* Nyelvváltó */
+.lang-switcher {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.lang-btn {
+  padding: 0.35rem 0.6rem;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all var(--transition);
+}
+
+.lang-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-light);
+  background: rgba(255,255,255,0.08);
+}
+
+.lang-btn.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg-dark);
+}
+
 .theme-btn:focus-visible {
   outline: 2px solid var(--color-accent-light);
   outline-offset: 2px;
